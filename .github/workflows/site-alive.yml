@@ -1,0 +1,13 @@
+name: Site alive check
+on:
+  schedule:
+    - cron: "0 14 * * 1"   # Mondays 14:00 UTC
+  workflow_dispatch:        # lets GB/Muse run it by hand
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch the live site
+        run: curl --fail --silent --show-error https://gmbdirectly-cyber.github.io/kingly-landing-page/
